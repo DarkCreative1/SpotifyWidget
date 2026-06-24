@@ -1,54 +1,165 @@
-﻿# Spotify Transparent Overlay
+# 🎵 Spotify Transparent Overlay
 
-A transparent, minimal overlay for Spotify on Windows. Controls music playback, displays current song information, album art, and visualizers without interrupting your workflow.
+A modern, lightweight, and fully customizable transparent Spotify overlay for Windows.
 
-## Features
+Control your music, view current track information, album artwork, audio visualizers, and manage playback without switching windows or interrupting your workflow.
 
-- **Transparent UI:** Seamlessly blends with your desktop.
-- **Media Controls:** Play, pause, skip, and previous track controls.
-- **Volume Control:** Directly control Spotify's volume.
-- **Visualizers:** Real-time audio visualizers (APO/System audio based).
-- **Customizable:** Adjust colors, transparency, and visualizer settings via the settings panel.
+---
 
-## Prerequisites
+## ✨ Features
 
-- Windows 10/11
-- Node.js (v18+)
-- Spotify App installed and running
+### 🎶 Spotify Integration
+- Display currently playing song
+- Show artist and album information
+- Dynamic album artwork
+- Automatic track updates
 
-## Installation
+### 🎮 Media Controls
+- Play / Pause
+- Next Track
+- Previous Track
+- Volume Control
+- Quick access shortcuts
 
-1. Clone the repository:
-   \\\ash
-   git clone https://github.com/YOUR_USERNAME/spotify-transparent-overlay.git
-   cd spotify-transparent-overlay
-   \\\
+### 📊 Audio Visualizers
+- Real-time audio visualization
+- Multiple visualizer styles
+- Adjustable sensitivity
+- Low performance impact
 
-2. Install dependencies:
-   \\\ash
-   npm install
-   \\\
+### 🎨 Fully Customizable
+- Transparent interface
+- Adjustable opacity
+- Custom colors and themes
+- Movable and resizable overlay
+- Save and load preferences
 
-3. Run the application:
-   \\\ash
-   npm start
-   \\\
+### ⚡ Lightweight
+- Minimal CPU usage
+- Runs in the background
+- Designed for multitasking and gaming
 
-## Configuration
+---
 
-Right-click the system tray icon to access the settings panel. From there, you can configure:
-- Overlay size and position
-- Theme colors and transparency
-- Visualizer style and sensitivity
-- Startup behavior
+## 🖼 Preview
 
-## Technologies Used
+> Screenshots and GIFs coming soon.
 
-- Electron
-- Node.js
-- HTML/CSS/JavaScript
-- PowerShell (for system-level media and volume control)
+---
 
-## License
+## 📋 Requirements
 
-MIT License
+- Windows 10 / 11
+- Node.js 18+
+- Spotify Desktop Application
+- Internet connection for Spotify services
+
+---
+
+## 🚀 Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/spotify-transparent-overlay.git
+cd spotify-transparent-overlay
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start Development Mode
+
+```bash
+npm start
+```
+
+### Build Application
+
+```bash
+npm run build
+```
+
+---
+
+## ⚙️ Configuration
+
+Open the settings menu from the system tray icon.
+
+Available customization options:
+
+- Overlay Position
+- Overlay Size
+- Opacity
+- Accent Colors
+- Visualizer Type
+- Visualizer Sensitivity
+- Launch on Startup
+- Always on Top
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Electron | Desktop Application Framework |
+| Node.js | Backend Runtime |
+| HTML | UI Structure |
+| CSS | Styling |
+| JavaScript | Application Logic |
+| PowerShell | System Audio & Media Control |
+
+---
+
+## 📦 Project Structure
+
+```text
+spotify-transparent-overlay/
+├── src/
+├── assets/
+├── visualizers/
+├── settings/
+├── package.json
+└── README.md
+```
+
+---
+
+## 🎯 Roadmap
+
+- [ ] Spotify OAuth Integration
+- [ ] Custom Themes
+- [ ] Lyrics Support
+- [ ] Keyboard Shortcuts
+- [ ] Media Session API Improvements
+- [ ] Performance Optimizations
+- [ ] Multi-Monitor Support
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## 📄 License
+
+Licensed under the MIT License.
+
+---
+
+<div align="center">
+
+Made with ❤️ for Spotify users
+
+</div>
