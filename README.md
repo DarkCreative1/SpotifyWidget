@@ -1,165 +1,162 @@
-# 🎵 Spotify Transparent Overlay
+<div align="center">
 
-A modern, lightweight, and fully customizable transparent Spotify overlay for Windows.
+# 🎵 Spotify Şeffaf Overlay
 
-Control your music, view current track information, album artwork, audio visualizers, and manage playback without switching windows or interrupting your workflow.
+**Çalan şarkı, her zaman gözünün önünde.**
 
----
+Masaüstünde şeffaf, hep-üstte bir "now playing" kartı — oynatma kontrolleri, ses boost & EQ dahil.
+Hesap yok, giriş yok, kurulum derdi yok.
 
-## ✨ Features
+[![Windows 10/11](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/DarkCreative1/SpotifyWidget/releases)
+[![Electron](https://img.shields.io/badge/Electron-42-47848F?style=for-the-badge&logo=electron&logoColor=white)](https://www.electronjs.org/)
+[![License: GPL-3.0](https://img.shields.io/badge/Lisans-GPL--3.0-green?style=for-the-badge)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/DarkCreative1/SpotifyWidget?style=for-the-badge&color=yellow&logo=github)](https://github.com/DarkCreative1/SpotifyWidget)
 
-### 🎶 Spotify Integration
-- Display currently playing song
-- Show artist and album information
-- Dynamic album artwork
-- Automatic track updates
+<br />
 
-### 🎮 Media Controls
-- Play / Pause
-- Next Track
-- Previous Track
-- Volume Control
-- Quick access shortcuts
+<img src="assets/promo.png" alt="Spotify Şeffaf Overlay — Masaüstü Önizleme" width="720" />
 
-### 📊 Audio Visualizers
-- Real-time audio visualization
-- Multiple visualizer styles
-- Adjustable sensitivity
-- Low performance impact
+</div>
 
-### 🎨 Fully Customizable
-- Transparent interface
-- Adjustable opacity
-- Custom colors and themes
-- Movable and resizable overlay
-- Save and load preferences
+<br />
 
-### ⚡ Lightweight
-- Minimal CPU usage
-- Runs in the background
-- Designed for multitasking and gaming
+## ✨ Özellikler
 
----
+| Özellik | Açıklama |
+|---|---|
+| 🪟 **Şeffaf Overlay** | Hep-üstte, sürüklenebilir kart — istediğin yere taşı |
+| ▶️ **Oynatma Kontrolleri** | Oynat · Duraklat · İleri · Geri · Karıştır · Tekrarla |
+| 🔊 **Ses Kontrolü** | Spotify ses seviyesini doğrudan overlay üzerinden ayarla |
+| 🎨 **Dinamik Tema** | Albüm kapağından otomatik renk çıkarma & arka plan parıltısı |
+| 🎛️ **Ses Boost & EQ** | Equalizer APO entegrasyonu ile güçlendirilmiş ses deneyimi |
+| ⚙️ **Ayarlar Paneli** | Boyut, opaklık, tema rengi, visualizer ve başlangıç davranışını özelleştir |
+| ⌨️ **Kısayol Tuşları** | Medya kontrolleri için global klavye kısayolları |
+| 📌 **Akıllı Konumlandırma** | Ekran kenarlarına yapışma & çoklu monitör desteği |
 
-## 🖼 Preview
+<br />
 
-> Screenshots and GIFs coming soon.
+## 🚀 Kurulum
 
----
+### Hazır Çalıştırılabilir (Önerilen)
 
-## 📋 Requirements
+[**📥 Releases**](https://github.com/DarkCreative1/SpotifyWidget/releases) sayfasından en son sürümü indir ve çalıştır — başka bir şeye gerek yok.
 
-- Windows 10 / 11
-- Node.js 18+
-- Spotify Desktop Application
-- Internet connection for Spotify services
-
----
-
-## 🚀 Installation
-
-### Clone Repository
+### Kaynak Koddan Derleme
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/spotify-transparent-overlay.git
-cd spotify-transparent-overlay
-```
+# 1. Repoyu klonla
+git clone https://github.com/DarkCreative1/SpotifyWidget.git
+cd SpotifyWidget
 
-### Install Dependencies
-
-```bash
+# 2. Bağımlılıkları yükle
 npm install
-```
 
-### Start Development Mode
+# 3. Geliştirme modunda çalıştır
+npm run dev
 
-```bash
-npm start
-```
-
-### Build Application
-
-```bash
+# 4. Portable .exe oluştur
 npm run build
 ```
 
----
+<br />
 
-## ⚙️ Configuration
+## 📋 Gereksinimler
 
-Open the settings menu from the system tray icon.
+| Gereksinim | Detay |
+|---|---|
+| **İşletim Sistemi** | Windows 10 / 11 |
+| **Node.js** | v18 veya üzeri (sadece kaynak koddan derleme için) |
+| **Spotify** | Masaüstü uygulaması yüklü ve çalışır durumda |
+| **Equalizer APO** | *(İsteğe bağlı)* Ses boost & EQ özellikleri için |
 
-Available customization options:
+<br />
 
-- Overlay Position
-- Overlay Size
-- Opacity
-- Accent Colors
-- Visualizer Type
-- Visualizer Sensitivity
-- Launch on Startup
-- Always on Top
+## ⚙️ Yapılandırma
 
----
+System tray ikonuna **sağ tık** yaparak ayarlar panelini aç. Buradan özelleştirebileceğin seçenekler:
 
-## 🛠 Tech Stack
+- 🎚️ **Overlay boyutu** — ölçek faktörü (0.7× – 1.8×)
+- 🎨 **Tema & opaklık** — renk paleti ve şeffaflık seviyesi
+- 🔈 **Ses boost** — Equalizer APO ile ses güçlendirme
+- 🚀 **Başlangıçta çalıştır** — Windows ile birlikte otomatik başlat
 
-| Technology | Purpose |
-|------------|---------|
-| Electron | Desktop Application Framework |
-| Node.js | Backend Runtime |
-| HTML | UI Structure |
-| CSS | Styling |
-| JavaScript | Application Logic |
-| PowerShell | System Audio & Media Control |
+<br />
 
----
+## 🏗️ Proje Yapısı
 
-## 📦 Project Structure
-
-```text
+```
 spotify-transparent-overlay/
+├── assets/                  # İkonlar & tanıtım görselleri
+│   ├── icon.png
+│   ├── tray.png
+│   └── promo.png
 ├── src/
-├── assets/
-├── visualizers/
-├── settings/
+│   ├── main/                # Electron ana süreç
+│   │   ├── main.js          # Uygulama giriş noktası & pencere yönetimi
+│   │   ├── nowPlaying.js    # SMTC ile çalan şarkı bilgisi
+│   │   ├── mediaControl.js  # Medya kontrol komutları
+│   │   ├── volumeControl.js # Ses seviyesi yönetimi
+│   │   ├── apoController.js # Equalizer APO entegrasyonu
+│   │   └── store.js         # Kalıcı ayar deposu
+│   ├── preload/             # Electron preload scriptleri
+│   └── renderer/            # Kullanıcı arayüzü
+│       ├── overlay.html     # Ana overlay kartı
+│       ├── overlay.css
+│       ├── overlay.js
+│       ├── settings.html    # Ayarlar penceresi
+│       ├── settings.css
+│       └── settings.js
 ├── package.json
+├── LICENSE                  # GPL-3.0
 └── README.md
 ```
 
----
+<br />
 
-## 🎯 Roadmap
+## 🛠️ Kullanılan Teknolojiler
 
-- [ ] Spotify OAuth Integration
-- [ ] Custom Themes
-- [ ] Lyrics Support
-- [ ] Keyboard Shortcuts
-- [ ] Media Session API Improvements
-- [ ] Performance Optimizations
-- [ ] Multi-Monitor Support
+<div align="center">
 
----
+![Electron](https://img.shields.io/badge/Electron-47848F?style=flat-square&logo=electron&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white)
 
-## 🤝 Contributing
+</div>
 
-Contributions, issues, and feature requests are welcome.
+- **Electron** — Çapraz platform masaüstü uygulama çatısı
+- **Windows SMTC** — Sistem medya bilgilerini okuma (`@coooookies/windows-smtc-monitor`)
+- **PowerShell** — Sistem seviyesinde medya ve ses kontrolü
+- **Equalizer APO** — Gelişmiş ses işleme & boost
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a Pull Request
+<br />
 
----
+## 🤝 Katkıda Bulunma
 
-## 📄 License
+Katkılarınız memnuniyetle karşılanır! Bir hata bulduysan veya yeni bir özellik önereceksen:
 
-Licensed under the MIT License.
+1. Bu repoyu **fork** et
+2. Yeni bir branch oluştur (`git checkout -b ozellik/harika-ozellik`)
+3. Değişikliklerini commit et (`git commit -m 'Harika özellik eklendi'`)
+4. Branch'i push et (`git push origin ozellik/harika-ozellik`)
+5. Bir **Pull Request** aç
+
+<br />
+
+## 📄 Lisans
+
+Bu proje [**GNU General Public License v3.0**](LICENSE) ile lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakın.
+
+<br />
 
 ---
 
 <div align="center">
 
-Made with ❤️ for Spotify users
+**⭐ Projeyi beğendiysen yıldız vermeyi unutma!**
+
+<sub>Made with ❤️ by <a href="https://github.com/DarkCreative1">dark</a></sub>
 
 </div>
