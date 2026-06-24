@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+  <title>Ayarlar</title>
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <!-- Üst bar -->
+  <header class="topbar">
+    <img src="../../assets/icon.png" class="logo" alt="" />
+    <div class="topbar-text">
+      <h1>Spotify Şeffaf Overlay</h1>
+      <p class="sub">Çalan şarkıyı her yerde göster · sesi boost et</p>
+    </div>
+    <span id="badge" class="badge">v1.0</span>
+  </header>
+
+  <!-- Canlı önizleme -->
+  <section class="now-playing" id="nowPlaying">
+    <div id="pvArtWrap" class="np-art"><img id="pvArt" alt="" /><span id="pvArtPh">♪</span></div>
+    <div class="np-info">
+      <div id="pvTitle" class="np-title">Spotify bekleniyor…</div>
+      <div id="pvArtist" class="np-artist">—</div>
+      <div id="pvStatus" class="np-status"><span class="dot"></span><span id="pvStatusText">Bağlantı kontrol ediliyor</span></div>
+    </div>
+  </section>
+
+  <!-- Sekmeler -->
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="view" role="tab">
+      <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      Görünüm
+    </button>
+    <button class="tab" data-tab="audio" role="tab">
+      <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1c2.9.9 5 3.5 5 6.7s-2.1 5.8-5 6.7v2.1c4-.9 7-4.5 7-8.8s-3-7.9-7-8.8z"/></svg>
+      Ses & EQ
+    </button>
+    <button class="tab" data-tab="general" role="tab">
+      <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M19.1 12.9c0-.3.1-.6.1-.9s0-.6-.1-.9l2-1.6-2-3.4-2.4 1a7 7 0 0 0-1.6-.9l-.3-2.6H10.2l-.4 2.6c-.6.2-1.1.5-1.6.9l-2.4-1-2 3.4 2 1.6c0 .3-.1.6-.1.9s0 .6.1.9l-2 1.6 2 3.4 2.4-1c.5.4 1 .7 1.6.9l.4 2.6h3.6l.4-2.6c.6-.2 1.1-.5 1.6-.9l2.4 1 2-3.4-2-1.6zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg>
+      Genel
+    </button>
+  </nav>
+
+  <main class="content">
+    <!-- GÖRÜNÜM -->
+    <section class="panel" data-panel="view">
+      <div class="section-label">Boyut &amp; Saydamlık</div>
+      <div class="group">
+        <div class="row">
+          <label>Saydamlık</label>
+          <input type="range" id="opacity" min="0.25" max="1" step="0.05" />
+          <span class="val" id="opacityVal"></span>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <label>Boyut</label>
+          <input type="range" id="scale" min="0.7" max="1.6" step="0.05" />
+          <span class="val" id="scaleVal"></span>
+        </div>
+      </div>
+
+      <div class="section-label">Öğeler</div>
+      <div class="group">
+        <div class="row toggle">
+          <div class="lbl"><span>İlerleme çubuğu</span></div>
+          <input type="checkbox" id="showProgress" />
+        </div>
+        <div class="divider"></div>
+        <div class="row toggle">
+          <div class="lbl"><span>Albüm kapağı</span></div>
+          <input type="checkbox" id="showAlbumArt" />
+        </div>
+        <div class="divider"></div>
+        <div class="row toggle">
+          <div class="lbl"><span>Kilitle</span><small>Yerine sabitle · tıklama arkaya geçer</small></div>
+          <input type="checkbox" id="locked" />
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button id="btnReset" class="btn ghost">Sağ üste taşı</button>
+        <button id="btnToggleShow" class="btn ghost">Göster / Gizle</button>
+      </div>
+    </section>
+
+    <!-- SES & EQ -->
+    <section class="panel hidden" data-panel="audio">
+      <div id="apoStatus" class="apo-status">Equalizer APO kontrol ediliyor…</div>
+
+      <!-- Kurulu değil -->
+      <div id="apoInstall" class="apo-block hidden">
+        <p>Ses boost ve EQ için ücretsiz <b>Equalizer APO</b> gerekiyor.</p>
+        <ol class="steps">
+          <li>"İndir" ile kurulum dosyasını al, kur.</li>
+          <li>Kurulumda <b>oynatma cihazını</b> (hoparlör/kulaklık) işaretle.</li>
+          <li>Bilgisayarı yeniden başlat, sonra bu uygulamayı tekrar aç.</li>
+        </ol>
+        <button id="btnDownload" class="btn primary">Equalizer APO İndir</button>
+      </div>
+
+      <!-- Kurulu, kurulum gerekli -->
+      <div id="apoSetup" class="apo-block hidden">
+        <p>Equalizer APO bulundu. Boost'u admin'siz kullanabilmek için tek seferlik kurulum gerekiyor.</p>
+        <button id="btnSetup" class="btn primary">Kurulumu Tamamla</button>
+        <p id="apoDeviceWarn" class="warn hidden">⚠️ Henüz hiçbir oynatma cihazında etkin değil. Configurator'dan cihazını işaretleyip yeniden başlat.</p>
+        <button id="btnConfigurator" class="btn ghost">Configurator'ı Aç</button>
+      </div>
+
+      <!-- Hazır -->
+      <div id="apoControls" class="apo-block hidden">
+        <div class="group">
+          <div class="row toggle">
+            <div class="lbl"><span>Boost / EQ aktif</span></div>
+            <input type="checkbox" id="audioEnabled" />
+          </div>
+        </div>
+        <div class="group">
+          <div class="row">
+            <label>Boost</label>
+            <input type="range" id="boost" min="0" max="30" step="0.5" />
+            <span class="val" id="boostVal"></span>
+          </div>
+          <div class="row">
+            <label>EQ Preset</label>
+            <div class="select-wrap"><select id="preset"></select></div>
+          </div>
+        </div>
+        <p class="warn small">⚠️ Sınır kaldırıldı (max <span id="capVal">30</span> dB). Çok yüksek değerler ciddi bozulma ve kulak/hoparlör hasarına yol açar — özellikle kulaklıkta kademeli artır.</p>
+        <p id="apoDeviceWarn2" class="warn hidden">⚠️ Oynatma cihazında etkin değil — Configurator'dan işaretle + yeniden başlat.</p>
+        <button id="btnConfigurator2" class="btn ghost">Configurator'ı Aç</button>
+      </div>
+    </section>
+
+    <!-- GENEL -->
+    <section class="panel hidden" data-panel="general">
+      <div class="section-label">Başlangıç</div>
+      <div class="group">
+        <div class="row toggle">
+          <div class="lbl"><span>Windows açılışında başlat</span><small>Oturum açınca overlay otomatik gelir</small></div>
+          <input type="checkbox" id="launch" />
+        </div>
+      </div>
+
+      <div class="section-label">Kısayollar</div>
+      <div class="group shortcuts">
+        <div class="sc-row"><span>Kilitle / aç</span><kbd>Ctrl + Shift + L</kbd></div>
+        <div class="divider"></div>
+        <div class="sc-row"><span>Göster / gizle</span><kbd>Ctrl + Shift + O</kbd></div>
+        <div class="divider"></div>
+        <div class="sc-row"><span>Ses Artır</span><kbd>Ctrl + Shift + ↑</kbd></div>
+        <div class="divider"></div>
+        <div class="sc-row"><span>Ses Azalt</span><kbd>Ctrl + Shift + ↓</kbd></div>
+        <div class="divider"></div>
+        <div class="sc-row"><span>Sesi kapat / aç</span><kbd>Ctrl + Shift + M</kbd></div>
+        <div class="divider"></div>
+        <div class="sc-row"><span>Taşı</span><em>Karttan tut-sürükle</em></div>
+        <div class="divider"></div>
+        <div class="sc-row"><span>Boyutlandır</span><em>Ctrl + fare tekerleği</em></div>
+        <div class="divider"></div>
+        <div class="sc-row"><span>Hızlı menü</span><em>Overlay'e sağ tık</em></div>
+      </div>
+
+      <p class="about">Spotify Şeffaf Overlay · SMTC + Equalizer APO ile çalışır.<br/>Şarkı bilgisi Windows medya kontrollerinden okunur; hesap/giriş gerekmez.</p>
+    </section>
+  </main>
+
+  <script src="settings.js"></script>
+</body>
+</html>

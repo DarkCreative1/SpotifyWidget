@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+  <title>Spotify Şeffaf Overlay</title>
+  <link rel="stylesheet" href="overlay.css" />
+</head>
+<body>
+  <div id="card" class="card idle" data-theme="auto">
+    <!-- Albüm parıltısı arka planı -->
+    <div id="glow" class="glow"></div>
+
+    <!-- Albüm kapağı -->
+    <div id="artWrap" class="art-wrap">
+      <img id="art" class="art" alt="" draggable="false" />
+      <div id="artFallback" class="art-fallback">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+        </svg>
+      </div>
+      <div id="eq" class="eq" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Metin + kontroller + ilerleme -->
+    <div class="info">
+      <div class="titles">
+        <div id="titleScroll" class="title-scroll">
+          <span id="title" class="title">Spotify bekleniyor…</span>
+        </div>
+        <div id="artist" class="artist">Şarkı çal, burada görünsün</div>
+      </div>
+
+      <!-- Medya kontrol çubuğu -->
+      <div class="transport">
+        <button id="btnShuffle" class="tp" title="Karıştır">
+          <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M10.59 9.17 5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
+        </button>
+        <button id="btnPrev" class="tp" title="Önceki">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M6 6h2v12H6V6zm3.5 6 8.5 6V6l-8.5 6z"/></svg>
+        </button>
+        <button id="btnPlay" class="tp tp-main" title="Oynat / Duraklat">
+          <svg class="ico-play" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+          <svg class="ico-pause" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"/></svg>
+        </button>
+        <button id="btnNext" class="tp" title="Sonraki">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path fill="currentColor" d="M16 6h2v12h-2V6zM6 18l8.5-6L6 6v12z"/></svg>
+        </button>
+        <button id="btnRepeat" class="tp" title="Tekrarla">
+          <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+          <span id="repeatOne" class="repeat-one">1</span>
+        </button>
+        <button id="btnVolume" class="tp tp-vol" title="Ses">
+          <!-- Yüksek ses (varsayılan) -->
+          <svg class="ico-vol-high" viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1c2.9.9 5 3.5 5 6.7s-2.1 5.8-5 6.7v2.1c4-.9 7-4.5 7-8.8s-3-7.9-7-8.8z"/></svg>
+          <!-- Düşük ses -->
+          <svg class="ico-vol-low" viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm10.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+          <!-- Sessiz (çizgili) -->
+          <svg class="ico-vol-mute" viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm13.3 2 2.6-2.6-1.4-1.4L14.9 10.6 12.3 8l-1.4 1.4 2.6 2.6-2.6 2.6 1.4 1.4 2.6-2.6 2.6 2.6 1.4-1.4z"/></svg>
+        </button>
+
+        <!-- Ses ayar popover'ı (hover ile açılır) -->
+        <div id="volPopover" class="vol-popover" aria-hidden="true">
+          <button id="volMute" class="vol-mute" title="Sessize al / aç">
+            <svg class="ico-vm-high" viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1c2.9.9 5 3.5 5 6.7s-2.1 5.8-5 6.7v2.1c4-.9 7-4.5 7-8.8s-3-7.9-7-8.8z"/></svg>
+            <svg class="ico-vm-mute" viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm13.3 2 2.6-2.6-1.4-1.4L14.9 10.6 12.3 8l-1.4 1.4 2.6 2.6-2.6 2.6 1.4 1.4 2.6-2.6 2.6 2.6 1.4-1.4z"/></svg>
+          </button>
+          <div id="volBar" class="vol-bar" title="Sesi sürükle">
+            <div id="volFill" class="vol-fill"></div>
+            <div id="volKnob" class="vol-knob"></div>
+          </div>
+          <span id="volPct" class="vol-pct">100</span>
+        </div>
+      </div>
+
+      <div id="progressRow" class="progress-row">
+        <span id="curTime" class="time">0:00</span>
+        <div id="bar" class="bar" title="Sarmak için tıkla">
+          <div id="barFill" class="bar-fill"></div>
+          <div id="barKnob" class="bar-knob"></div>
+        </div>
+        <span id="durTime" class="time">0:00</span>
+      </div>
+    </div>
+
+    <!-- Hover ile çıkan mini kontroller (kilit/ayar/gizle) -->
+    <div class="controls">
+      <button id="btnLock" class="ctl" title="Kilitle / Kilidi aç (sürükleme)">
+        <svg class="ico-unlock" viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 1a5 5 0 0 0-5 5v2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-9V6a3 3 0 0 1 6 0h2a5 5 0 0 0-5-5z"/></svg>
+        <svg class="ico-lock" viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 1a5 5 0 0 0-5 5v2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm3 7H9V6a3 3 0 0 1 6 0v2z"/></svg>
+      </button>
+      <button id="btnSettings" class="ctl" title="Ayarlar">
+        <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M19.14 12.94a7.97 7.97 0 0 0 .06-.94 7.97 7.97 0 0 0-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.5.5 0 0 0-.5-.42h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.74 8.84a.5.5 0 0 0 .12.64l2.03 1.58c-.04.31-.06.62-.06.94s.02.63.06.94l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.68.22l2.39-.96c.49.38 1.03.7 1.62.94l.36 2.54c.04.24.25.42.5.42h3.84c.25 0 .46-.18.5-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.26.12.54.02.68-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"/></svg>
+      </button>
+      <button id="btnHide" class="ctl" title="Gizle">
+        <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="overlay.js"></script>
+</body>
+</html>

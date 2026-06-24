@@ -1,0 +1,45 @@
+﻿{
+    "name":  "spotify-transparent-overlay",
+    "version":  "1.0.0",
+    "description":  "A transparent, minimal overlay for Spotify on Windows with visualizers and playback controls.",
+    "main":  "src/main/main.js",
+    "author":  "dark",
+    "license":  "MIT",
+    "scripts":  {
+                    "start":  "electron .",
+                    "dev":  "electron . --dev",
+                    "build":  "electron-builder --win portable",
+                    "dist":  "electron-builder --win nsis"
+                },
+    "build":  {
+                  "appId":  "com.seffaf.spotifyoverlay",
+                  "productName":  "Spotify Seffaf Overlay",
+                  "asar":  false,
+                  "directories":  {
+                                      "output":  "dist"
+                                  },
+                  "files":  [
+                                "src/**/*",
+                                "assets/icon.png",
+                                "assets/tray.png",
+                                "!**/*.map"
+                            ],
+                  "win":  {
+                              "target":  [
+                                             "portable",
+                                             "nsis"
+                                         ],
+                              "icon":  "assets/icon.png"
+                          },
+                  "portable":  {
+                                   "artifactName":  "SpotifySeffaf-Portable.exe"
+                               }
+              },
+    "dependencies":  {
+                         "@coooookies/windows-smtc-monitor":  "^1.0.12"
+                     },
+    "devDependencies":  {
+                            "electron":  "^42.4.1",
+                            "electron-builder":  "^26.15.3"
+                        }
+}
