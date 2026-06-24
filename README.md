@@ -12,10 +12,6 @@ Hesap yok, giriş yok, kurulum derdi yok.
 [![License: GPL-3.0](https://img.shields.io/badge/Lisans-GPL--3.0-green?style=for-the-badge)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/DarkCreative1/SpotifyWidget?style=for-the-badge&color=yellow&logo=github)](https://github.com/DarkCreative1/SpotifyWidget)
 
-<br />
-
-<img src="assets/promo.png" alt="Spotify Şeffaf Overlay — Masaüstü Önizleme" width="720" />
-
 </div>
 
 <br />
